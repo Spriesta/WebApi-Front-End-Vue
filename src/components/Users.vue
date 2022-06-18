@@ -1,8 +1,6 @@
 <template>
 
-<div>
-    HelloWorld
-</div>
+
 
 </template>
 
@@ -22,22 +20,12 @@ data(){
     }
 },
 
-created: function() {
-    axios.get("https://localhost:44332/api/Main/1").then((res) => {
-        this.name =res.data.Data[0].sName;
-        console.log(this.name);
-    });
-
-
-
-        // const req = async () => {
-        // const response = await axios.get('https://localhost:44332/api/Main/1')
-        // console.log(response)
-        // }
-        // req() 
-
-
-},
+// created: function() {
+//     axios.get("https://localhost:44332/api/Main/1").then((res) => {
+//         this.name =res.data.Data[0].sName;
+//         console.log(this.name);
+//     });  
+// },
 
 
 

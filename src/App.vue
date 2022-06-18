@@ -1,12 +1,14 @@
 <template>
 <div class="container">
 
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>My First Vue Project </h1>
+<button type="button" class="btn btn-primary">Primary</button>
+
 
  <Users/> <!-- componenti ekledik html kısmına -->
  
 </div>
+
 
 </template>
 
