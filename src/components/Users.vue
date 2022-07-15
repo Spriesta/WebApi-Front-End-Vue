@@ -1,36 +1,8 @@
 <template>
 <div class="container">  
 
-<!-- <table class="table">
-
-  <thead class="thead-dark">
-    <tr>
-      <th scope="id">ID</th>
-      <th scope="sName">Ad</th>
-      <th scope="sAge">Yaş</th>
-      <th scope="sSchoolNum">Okul Numarası</th>
-      <th scope="sFrom">Doğum Yeri</th>
-      <th scope="sGender">Cinsiyet</th>
-    </tr>   
-  </thead>
-
-  <tbody v-for="user in Users" :key="user.id">
-    <tr>
-      <th scope="row">{{user.id}}</th>
-      <td>{{user.sName}}</td>
-      <td>{{user.sAge}}</td>
-      <td>{{user.sSchoolNum}}</td>
-      <td>{{user.sFrom}}</td>
-      <td>{{user.sGender}}</td>
-
-    </tr>
-    
-  </tbody>
-
-</table> -->
-
-<div class="container">
   <div class="table-wrapper">
+
     <div class="table-title">
 
       <div class="row">
@@ -38,14 +10,14 @@
           <h2>Öğrenci Yönetimi</h2>
         </div>
         <div class="col-sm-6">
-          <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-          <a href="#deleteEmployeeModal" class="btn btn-danger"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+          <button @click="userAdd()" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Yeni Kayıt Ekle</span></button>
         </div>
       </div>
 
     </div>
 
     <table class="table table-striped table-hover">
+
       <thead>
         <tr>
           <th>
@@ -62,28 +34,27 @@
         </tr>
       </thead>
 
-      <tbody v-for="user in Users" :key="user.id">
-        <tr>
+      <tbody v-for="(user, index) in Users" :key="user.id">
+        <tr>			
           <td>
             <span class="custom-checkbox">
 								<input type="checkbox" id="checkbox1" name="options[]" value="1">
 								<label for="checkbox1"></label>
 							</span>
           </td>
-          <td>{{user.sName}}</td>
-          <td>{{user.sAge}}</td>
-          <td>{{user.sFrom}}</td>
-          <td>{{user.sGender}}</td>
+          <td contenteditable='true' id="name">{{user.sName}}</td>
+          <td contenteditable='true' id="age" >{{user.sAge}}</td>
+          <td contenteditable='true' id="from" >{{user.sFrom}}</td>
+          <td contenteditable='true' id="gender" >{{user.sGender}}</td>
           <td>
-            <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+            <button @click="userUpdate(user.id, index)" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
+            <button @click="userDelete(user.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
           </td>
         </tr>
       
       </tbody>
       
     </table>
-
     <!-- <div class="clearfix">
       <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
       <ul class="pagination">
@@ -97,99 +68,7 @@
       </ul>
     </div> -->
   </div>
-</div>
 
-<!-- Edit Modal HTML -->
-<!-- <div id="addEmployeeModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">
-          <h4 class="modal-title">Add Employee</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>Address</label>
-            <textarea class="form-control" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="text" class="form-control" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-          <input type="submit" class="btn btn-success" value="Add">
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
-<!-- Edit Modal HTML -->
-<!-- <div id="editEmployeeModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Employee</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label>Address</label>
-            <textarea class="form-control" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Phone</label>
-            <input type="text" class="form-control" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-          <input type="submit" class="btn btn-info" value="Save">
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
-<!-- Delete Modal HTML -->
-<!-- <div id="deleteEmployeeModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form>
-        <div class="modal-header">
-          <h4 class="modal-title">Delete Employee</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete these Records?</p>
-          <p class="text-warning"><small>This action cannot be undone.</small></p>
-        </div>
-        <div class="modal-footer">
-          <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-          <input type="submit" class="btn btn-danger" value="Delete">
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
 
 
 
@@ -200,23 +79,56 @@
 
 <script>
 
-import axios from 'axios'  // axios import ettik compt.
+import axios, { Axios } from 'axios'  // axios import ettik compt.
 
 export default {
 
+methods: {
+	userAdd: function(){
+
+
+
+	},
+
+	userUpdate: function(id, index){			
+		var item = [];
+		item = $("tr");
+		index = index+1;	
+
+		var name = item[index].cells[1].innerHTML
+		var age = item[index].cells[2].innerHTML
+		var from = item[index].cells[3].innerHTML
+		var gender = item[index].cells[4].innerHTML
+
+		 axios.post(`https://localhost:44332/Main/userUpdate/${id}/${name}/${age}/${from}/${gender}`).then(() => {this.getList()
+		})		
+	},
+	
+	userDelete: function(deleteItem){
+		axios.post("https://localhost:44332/Main/userDelete/"+deleteItem).then(() => {this.getList()
+		})
+	},
+
+	getList: function(){
+		axios.get("https://localhost:44332/Main/GetList/").then((res) => {
+			this.Users = res.data.Data;
+		})
+	},
+	
+	
+
+},
+
 data(){
     return{
-        Users:null
+        Users:null,	
     }
 },
 
-created: function() {
-    axios.get("https://localhost:44332/api/Main").then((res) => {
-        this.Users = res.data.Data;
-       // console.log(this.name);
-    });  
-},
 
+created: function() {
+     this.getList();
+},
 
 
 
